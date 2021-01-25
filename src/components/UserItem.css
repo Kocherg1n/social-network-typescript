@@ -1,0 +1,27 @@
+.UserItem {
+    margin-bottom: 15px;
+}
+
+.UserItem .UserItem__container {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.UserItem .UserItem__img {
+    border-radius: 50%;
+    overflow: hidden;
+    max-width: 60px;
+}
+
+.UserItem img {
+    max-width: 60px;
+}
+
+.UserItem .UserItem__info {
+    margin-left: 10px;
+}
+
+.UserItem .UserItem__login {
+    font-weight: 700;
+    font-size: 16px;
+}

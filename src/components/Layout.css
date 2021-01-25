@@ -1,0 +1,32 @@
+.Layout {
+    display: grid;
+    grid-template-areas:
+            'header header'
+            'aside main'
+            'footer footer';
+    height: 100vh;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 1rem;
+}
+
+header, aside, main, footer {
+    background-color: gold;
+    padding: 1rem;
+}
+
+.Header {
+    grid-area: header;
+}
+
+.Aside {
+    grid-area: aside;
+}
+
+.Main {
+    grid-area: main;
+}
+
+.Footer {
+    grid-area: footer;
+}

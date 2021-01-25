@@ -1,0 +1,11 @@
+.Header {}
+
+.Header .Header__container {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.Header .Header__user-block span{
+    font-weight: 700;
+}

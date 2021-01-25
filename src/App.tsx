@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react'
+import {Header} from './components/Header'
+import {Layout} from './components/Layout'
+import {Navigation} from './components/Navigation'
+import {Routes} from './routes/routes'
+import {fetchUserData} from './redux/middleware'
+import {RootState} from './redux/store/store'
+import {useDispatch, useSelector} from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export const App: React.FC = () => {
+    const dispatch = useDispatch();
+    const {userLoggedIn, userData} = useSelector((state: RootState) => ({
+        userLoggedIn: state.auth.userLoggedIn,
+        userData: state.auth.userData,
+    }))
+
+    useEffect(() => {
+        dispatch(fetchUserData())
+    }, [])
+
+    return (
+        <div className='App'>
+            <Layout>
+                <Header loggedIn={userLoggedIn} userLogin={userData.login}/>
+                <aside className='Aside'>
+                    <Navigation/>
+                </aside>
+                <main className='Main'>
+                    <Routes/>
+                </main>
+                <footer className='Footer'>footer</footer>
+            </Layout>
+        </div>
+    )
 }
-
-export default App;

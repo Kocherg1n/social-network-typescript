@@ -1,0 +1,7 @@
+export const SET_USERS = 'SET_USERS'
+export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const SET_IS_FOLLOW = 'SET_IS_FOLLOW'
+export const SET_IS_UNFOLLOW = 'SET_IS_UNFOLLOW'
+export const SET_USER_DATA = 'SET_USER_DATA'
+export const SET_USER_LOGGED_IN = 'SET_USER_LOGGED_IN'
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
