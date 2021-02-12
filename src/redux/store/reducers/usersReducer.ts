@@ -1,12 +1,20 @@
 import {UsersActionTypes, UserType} from '../../../types'
-import {SET_CURRENT_PAGE, SET_IS_FOLLOW, SET_IS_LOADING, SET_IS_UNFOLLOW, SET_USERS} from '../../actions'
+import {
+    SET_CURRENT_PAGE,
+    SET_FOLLOW_IN_PROGRESS,
+    SET_IS_FOLLOW,
+    SET_IS_LOADING,
+    SET_IS_UNFOLLOW,
+    SET_USERS
+} from '../../actions'
 
 const initialState = {
     isLoading: false,
+    followInProgress: [] as Array<number>,
     items: [] as Array<UserType>,
     currentPage: 1,
-    perPage: 5,
-    totalCount: 50
+    perPage: 15,
+    totalCount: 500
 }
 
 type InitialStateType = typeof initialState
@@ -54,6 +62,14 @@ export const usersReducer = (state = initialState, action: any): InitialStateTyp
                 currentPage: action.payload
             }
         }
+        case SET_FOLLOW_IN_PROGRESS: {
+            return {
+                ...state,
+                followInProgress: action.isFetching
+                    ? [...state.followInProgress, action.userId]
+                    : state.followInProgress.filter(el => el !== action.userId)
+            }
+        }
         default: {
             return {
                 ...state
@@ -85,4 +101,10 @@ export const setIsUnFollow = (userId: number): UsersActionTypes => ({
 export const setCurrentPage = (page: number): UsersActionTypes => ({
     type: SET_CURRENT_PAGE,
     payload: page
+})
+
+export const setFollowInProgress = (isFetching: boolean, userId: number): UsersActionTypes => ({
+    type: SET_FOLLOW_IN_PROGRESS,
+    isFetching,
+    userId
 })

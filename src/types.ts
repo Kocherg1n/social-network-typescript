@@ -5,8 +5,14 @@ import {
     SET_USER_LOGGED_IN,
     SET_USERS,
     SET_IS_UNFOLLOW,
-    SET_CURRENT_PAGE
+    SET_CURRENT_PAGE, SET_FOLLOW_IN_PROGRESS, SET_PROFILE, SET_STATUS, SET_LOGIN_ERROR
 } from './redux/actions'
+
+export type LoginFormTypes = {
+    email: string,
+    password: string,
+    rememberMe: boolean
+}
 
 // usersReducer_types
 export type PhotosType = {
@@ -15,9 +21,9 @@ export type PhotosType = {
 }
 
 export type UserType = {
-    followed: boolean | null,
-    id: number | null,
-    name: string | null,
+    followed: boolean,
+    id: number,
+    name: string,
     photos: PhotosType,
     large: any,
     small: null,
@@ -25,6 +31,7 @@ export type UserType = {
     uniqueUrlName: string | null
 }
 
+// profileReducer_types
 export type UsersType = Array<UserType>
 
 // AC_types
@@ -51,7 +58,28 @@ export type SetIsUnFollowType = {
 export type UserDataType = {
     email: string | null,
     login: string | null,
-    id?: number | null
+    id: number | null
+}
+
+export type ProfileType = {
+    aboutMe: null | string,
+    contacts: ProfileContactsType,
+    fullName: string,
+    lookingForAJob: false,
+    lookingForAJobDescription: null | string,
+    photos: PhotosType,
+    userId: null | number
+}
+
+export type ProfileContactsType = {
+    facebook: null | string,
+    website: null | string,
+    vk: null | string,
+    twitter: null | string,
+    instagram: null | string,
+    youtube: null | string,
+    github: null | string,
+    mainLink: null | string
 }
 
 export type SetUserDataType = {
@@ -69,5 +97,30 @@ export type SetCurrentPageType = {
     payload: number
 }
 
-export type UsersActionTypes = SetUsersType | SetIsLoadingType | SetIsFollowType | SetIsUnFollowType | SetCurrentPageType
-export type AuthActionTypes = SetUserDataType | SetUserLoggedInType
+export type SetFollowInProgressType = {
+    type: typeof SET_FOLLOW_IN_PROGRESS,
+    isFetching: boolean,
+    userId: number
+}
+
+export type SetProfileType = {
+    type: typeof SET_PROFILE,
+    payload: ProfileType
+}
+
+export type SetStatusType = {
+    type: typeof SET_STATUS,
+    payload: string
+}
+
+export type SetLoginErrorType = {
+    type: typeof SET_LOGIN_ERROR,
+    payload: string
+}
+
+export type UsersActionTypes = SetUsersType | SetIsLoadingType |
+    SetIsFollowType | SetIsUnFollowType | SetCurrentPageType |
+    SetFollowInProgressType
+
+export type AuthActionTypes = SetUserDataType | SetUserLoggedInType | SetLoginErrorType
+export type ProfileActionTypes = SetProfileType | SetStatusType

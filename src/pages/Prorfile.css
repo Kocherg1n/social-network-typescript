@@ -1,0 +1,13 @@
+.Profile-page {
+
+}
+
+.Profile-page .Profile-page__avatar img {
+    min-width: 100px;
+    max-width: 170px;
+}
+
+.Profile-page .Profile-page__login {
+    font-size: 24px;
+    font-weight: 700;
+}

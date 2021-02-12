@@ -3,7 +3,7 @@ import {Header} from './components/Header'
 import {Layout} from './components/Layout'
 import {Navigation} from './components/Navigation'
 import {Routes} from './routes/routes'
-import {fetchUserData} from './redux/middleware'
+import {fetchAuthData} from './redux/middleware'
 import {RootState} from './redux/store/store'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -16,8 +16,8 @@ export const App: React.FC = () => {
     }))
 
     useEffect(() => {
-        dispatch(fetchUserData())
-    }, [])
+        dispatch(fetchAuthData())
+    }, [dispatch])
 
     return (
         <div className='App'>
@@ -27,10 +27,13 @@ export const App: React.FC = () => {
                     <Navigation/>
                 </aside>
                 <main className='Main'>
-                    <Routes/>
+                    <Routes />
                 </main>
                 <footer className='Footer'>footer</footer>
             </Layout>
         </div>
     )
 }
+
+
+
